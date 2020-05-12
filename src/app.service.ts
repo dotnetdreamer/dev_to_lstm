@@ -36,11 +36,11 @@ export class AppService {
   async trainExpenseCategoryMl() {
     // create configuration for training
     const config = {
-        iterations: 100000,
-        log: true,
-        logPeriod: 100,
-        layers: [10],
-        errorThresh: 0.00005,
+      iterations: 100,
+      log: true,
+      logPeriod: 100,
+      layers: [10],
+      errorThresh: 0.00002,
     };
     
     const data = await this.buildExpensesTrainingSet();
