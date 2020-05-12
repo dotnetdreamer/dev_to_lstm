@@ -1,12 +1,22 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('app')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+
+  @Get('predict')
+  predict(@Query() args: { description }) {
+    if(!args.description) {
+      return 'description must be passed';
+    }
+
+    return this.appService.predict(args.description);
+  }
+
+  @Get('build')
+  build() {
+    return this.appService.build();
   }
 }
